@@ -1,0 +1,25 @@
+<%= form_for(@hussar) do |f| %>
+  <% if @hussar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hussar.errors.count, "error") %> prohibited this hussar from being saved:</h2>
+
+      <ul>
+      <% @hussar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :born %><br>
+    <%= f.date_select :born %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

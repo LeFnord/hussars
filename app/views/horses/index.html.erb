@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Horses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Hussar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @horses.each do |horse| %>
+      <tr>
+        <td><%= horse.name %></td>
+        <td><%= horse.hussar %></td>
+        <td><%= link_to 'Show', horse %></td>
+        <td><%= link_to 'Edit', edit_horse_path(horse) %></td>
+        <td><%= link_to 'Destroy', horse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Horse', new_horse_path %>
