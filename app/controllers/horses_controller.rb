@@ -15,6 +15,7 @@ class HorsesController < ApplicationController
   # GET /horses/new
   def new
     @horse = Horse.new
+    @hussars = Hussar.all
   end
 
   # GET /horses/1/edit

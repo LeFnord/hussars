@@ -26,7 +26,7 @@ module API
       params do
         requires :id, type: Integer, desc: "Identity.", documentation: { example: 1}
         requires :name, type: String, desc: "Name.", documentation: { example: 'Jon'}
-        requires :born, type: Date, desc: "Birthday.", documentation: { example: '12-12-2012'}
+        requires :born
       end
 
       put ":id" do

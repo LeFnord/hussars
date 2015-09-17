@@ -17,7 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :hussar_id %><br>
-    <%= f.text_field :hussar_id %>
+    <%= f.collection_select(:hussar_id, Hussar.all, :id, :name) %>
+
   </div>
   <div class="actions">
     <%= f.submit %>

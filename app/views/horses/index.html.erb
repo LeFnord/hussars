@@ -15,7 +15,7 @@
     <% @horses.each do |horse| %>
       <tr>
         <td><%= horse.name %></td>
-        <td><%= horse.hussar %></td>
+        <td><%= horse.hussar.name %></td>
         <td><%= link_to 'Show', horse %></td>
         <td><%= link_to 'Edit', edit_horse_path(horse) %></td>
         <td><%= link_to 'Destroy', horse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
