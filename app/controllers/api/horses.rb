@@ -22,18 +22,18 @@ module API
         present :hussar, horse.hussar
       end
 
-      desc "Create a horse."
-      params do
-        requires :hussar_id, type: Integer
-        requires :name, type: String, desc: "Name."
-      end
-      post do
-        horse = Horse.create!({name: params[:name]})
-        hussar = Hussar.find_by_id(params[:hussar_id])
-        hussar.horses << horse
-
-        horse
-      end
+      # desc "Create a horse."
+      # params do
+      #   requires :hussar_id, type: Integer
+      #   requires :name, type: String, desc: "Name."
+      # end
+      # post do
+      #   horse = Horse.create!({name: params[:name]})
+      #   hussar = Hussar.find_by_id(params[:hussar_id])
+      #   hussar.horses << horse
+      #
+      #   horse
+      # end
 
     end
   end

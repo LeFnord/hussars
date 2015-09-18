@@ -26,7 +26,7 @@ module API
       params do
         requires :id, type: Integer, desc: "Identity.", documentation: { example: 1}
         requires :name, type: String, desc: "Name.", documentation: { example: 'Jon'}
-        requires :born
+        # requires :born, type: Date, desc: "Birtday"
       end
 
       put ":id" do
@@ -37,17 +37,17 @@ module API
         hussar
       end
 
-      desc "Create a hussar."
-      params do
-        requires :name, type: String, desc: "Name."
-        requires :born, type: Date, desc: "Birthday."
-      end
-      post do
-        Hussar.create!({
-          name: params[:name],
-          born: params[:born]
-        })
-      end
+      # desc "Create a hussar."
+      # params do
+      #   requires :name, type: String, desc: "Name."
+      #   requires :born, type: Date, desc: "Birthday."
+      # end
+      # post do
+      #   Hussar.create!({
+      #     name: params[:name],
+      #     born: params[:born]
+      #   })
+      # end
 
       desc "Delete a hussar."
       params do
