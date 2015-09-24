@@ -3,38 +3,65 @@ module API
     include API::Defaults
 
     resources :horses do
-      desc 'Get all horses'
+      desc 'Get all horses' do
+        http_codes [
+          { code: 200, message: 'get Horses' },
+          { code: 401, message: 'HorsesOutError', model: Entities::ApiError }
+        ]
+      end
       get do
         horses = Horse.all
         present :total_page, 10
         present :per_page, 20
-        present :resources, horses
+        present :horses, horses, with: Entities::Horse
       end
 
-      desc "Returns specific horse."
+      desc 'Returns specific horse.', params: Entities::Horse.documentation
       params do
-        requires :id, type: Integer, desc: "Identity.", documentation: { example: '1'}
+        requires :id, type: Integer, desc: 'Identifier of Horse.', documentation: { example: '1'}
       end
-
-      get ":id" do
+      get ':id' do
         horse = Horse.find_by_id(params[:id])
-        present :horse, horse
-        present :hussar, horse.hussar
+        present horse, with: Entities::Horse
       end
 
-      # desc "Create a horse."
-      # params do
-      #   requires :hussar_id, type: Integer
-      #   requires :name, type: String, desc: "Name."
-      # end
-      # post do
-      #   horse = Horse.create!({name: params[:name]})
-      #   hussar = Hussar.find_by_id(params[:hussar_id])
-      #   hussar.horses << horse
-      #
-      #   horse
-      # end
+      desc 'Create a horse.' do
+        http_codes [{code: 201, message: 'Horse created'}, {code: 422, message: 'Validation Errors'}]
+      end
+      params do
+        requires :name, type: String, desc: 'Name of Horse to create'
+        requires :hussar_id, type: Integer, desc: 'Associated Hussar to create'
+      end
+      post do
+        horse = Horse.create!({name: params[:name]})
+        hussar = Hussar.find_by_id(params[:hussar_id])
+        hussar.horses << horse
 
+        present horse, with: Entities::Horse
+      end
+
+      desc "Update a horse."
+      params do
+        requires :id, type: Integer, desc: 'Identity of Horse', documentation: { example: 1}
+        optional :name, type: String, desc: 'Name of Horse', documentation: { example: 'Jon'}
+        optional :hussar_id, type: Integer, desc: 'Associated Hussar of Horse', documentation: { example: '1'}
+      end
+      put ":id" do
+        horse = Horse.find_by_id(params[:id])
+        horse.name = params[:name]
+        horse.hussar_id = params[:hussar_id]
+        horse.save!
+        present horse, with: Entities::Horse
+      end
+
+
+      desc 'Delete a Horse'
+      params do
+        requires :id, type: Integer, desc: 'Identity of Horse to delete', documentation: { example: '1'}
+      end
+      delete ':id' do
+        Horse.destroy(params[:id])
+      end
     end
   end
 end

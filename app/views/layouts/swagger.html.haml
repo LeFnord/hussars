@@ -27,8 +27,8 @@
           discoveryUrl: "http://#{request.host}:#{request.port}/api/swagger_doc.json",
           apiKey:"",
           dom_id:"swagger-ui-container",
-          supportHeaderParams: false,
-          supportedSubmitMethods: ['get', 'post', 'put', 'delete']
+          supportHeaderParams: true,
+          supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch', 'options']
         });
         window.swaggerUi.load();
       });
@@ -39,7 +39,7 @@
         %a#logo{ href: "http://swagger.wordnik.com" } Swagger
         %form#api_selector
           .input
-            %input#input_baseUrl{ placeholder: "http://localhost:3000/api", name: "baseUrl", type: "text" }
+            %input#input_baseUrl{ placeholder: "http://localhost:3040/api", name: "baseUrl", type: "text" }
           .input
             %input#input_apiKey{ placeholder: "api_key", name: "apiKey", type: "text" }
           .input

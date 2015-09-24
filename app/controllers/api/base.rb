@@ -9,9 +9,6 @@ module API
     end
 
     add_swagger_documentation :format => :json,
-                              :hide_format => true,
-                              # :base_path => "/api",
-                              # :host => "localhost:3040",
                               :hide_documentation_path => false,
                               :api_version => 'v1',
                               :info => {

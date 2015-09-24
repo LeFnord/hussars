@@ -3,58 +3,59 @@ module API
     include API::Defaults
 
     resource :hussars do
-      desc "Return list of hussars"
+      desc 'Return list of hussars'
       get do
         hussars = Hussar.all
         present :total_page, 10
         present :per_page, 20
-        present :resources, hussars
+        present :hussars, hussars, with: Entities::Hussar
       end
 
-      desc "Returns specific hussar."
+      desc 'Returns specific hussar', params: Entities::Hussar.documentation
       params do
-        requires :id, type: Integer, desc: "Identity.", documentation: { example: '1'}
+        requires :id, type: Integer, desc: 'Identifier of Hussar', documentation: { example: '1'}
       end
-
-      get ":id" do
+      get ':id' do
         hussar = Hussar.find_by_id(params[:id])
-        present :hussar, hussar
-        present :horses, hussar.horses if hussar
+        horses = hussar.horses
+        present hussar, with: Entities::Hussar
       end
 
-      desc "Update a hussar.", http_status: 201
+      desc 'Create a hussar' do
+        http_codes [{code: 201, message: 'Hussar created'}, {code: 422, message: 'Validation Errors'}]
+      end
       params do
-        requires :id, type: Integer, desc: "Identity.", documentation: { example: 1}
-        requires :name, type: String, desc: "Name.", documentation: { example: 'Jon'}
-        # requires :born, type: Date, desc: "Birtday"
+        requires :name, type: String, desc: 'Name of Hussar to create'
+        requires :born, type: Date, desc: 'Birthday of Hussar to create'
+      end
+      post do
+        hussar = Hussar.create!({
+          name: params[:name],
+          born: params[:born]
+        })
+        present hussar, with: Entities::Hussar
       end
 
-      put ":id" do
+      desc 'Update a hussar'
+      params do
+        requires :id, type: Integer, desc: 'Identity of Hussar', documentation: { example: 1}
+        optional :name, type: String, desc: 'Name of Hussar', documentation: { example: 'Jon'}
+        optional :born, type: Date, desc: 'Birthday of Hussar', documentation: { example: '07-07-1972'}
+      end
+      put ':id' do
         hussar = Hussar.find_by_id(params[:id])
         hussar.name = params[:name]
         hussar.born = params[:born]
         hussar.save!
-        hussar
+        present hussar, with: Entities::Hussar
       end
 
-      # desc "Create a hussar."
-      # params do
-      #   requires :name, type: String, desc: "Name."
-      #   requires :born, type: Date, desc: "Birthday."
-      # end
-      # post do
-      #   Hussar.create!({
-      #     name: params[:name],
-      #     born: params[:born]
-      #   })
-      # end
-
-      desc "Delete a hussar."
+      desc 'Delete a hussar'
       params do
-        requires :id, type: Integer, desc: "Identity."
+        requires :id, type: Integer, desc: 'Identity of Hussar to delete', documentation: { example: '1'}
       end
 
-      delete ":id" do
+      delete ':id' do
         route.route_params[params[:id]] # yields the parameter description
       end
 
