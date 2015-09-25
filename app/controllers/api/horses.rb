@@ -6,7 +6,7 @@ module API
       desc 'Get all horses' do
         http_codes [
           { code: 200, message: 'get Horses' },
-          { code: 401, message: 'HorsesOutError', model: Entities::ApiError }
+          { code: 422, message: 'HorsesOutError', model: Entities::ApiError }
         ]
       end
       get do
@@ -26,7 +26,7 @@ module API
       end
 
       desc 'Create a horse.' do
-        http_codes [{code: 201, message: 'Horse created'}, {code: 422, message: 'Validation Errors'}]
+        http_codes [{code: 201, message: 'Horse created'}, {code: 422, message: 'Validation Errors', model: Entities::ApiError}]
       end
       params do
         requires :name, type: String, desc: 'Name of Horse to create'
@@ -40,7 +40,9 @@ module API
         present horse, with: Entities::Horse
       end
 
-      desc "Update a horse."
+      desc "Update a horse." do
+        http_codes [{code: 422, message: 'Validation Errors', model: Entities::ApiError}]
+      end
       params do
         requires :id, type: Integer, desc: 'Identity of Horse', documentation: { example: 1}
         optional :name, type: String, desc: 'Name of Horse', documentation: { example: 'Jon'}
