@@ -13,8 +13,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'grape'
-gem 'grape-swagger', path: '../grape-swagger'
-gem 'grape-swagger-ui', path: '../grape-swagger-ui'
+gem 'grape-swagger', git: 'git@github.com:LeFnord/grape-swagger.git'
+gem 'grape-swagger-ui', git: 'git@github.com:LeFnord/grape-swagger-ui.git'
 gem 'grape-entity'
 
 group :development, :test do

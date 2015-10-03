@@ -26,11 +26,14 @@ module API
       end
 
       desc 'Create a horse.' do
-        http_codes [{code: 201, message: 'Horse created'}, {code: 422, message: 'Validation Errors', model: Entities::ApiError}]
+        http_codes [
+          {code: 201, message: 'Horse created'},
+          {code: 422, message: 'Validation Errors', model: Entities::ApiError}
+        ]
       end
       params do
         requires :name, type: String, desc: 'Name of Horse to create'
-        requires :hussar_id, type: Integer, desc: 'Associated Hussar to create'
+        optional :hussar_id, type: Integer, desc: 'Associated Hussar to create'
       end
       post do
         horse = Horse.create!({name: params[:name]})
@@ -41,7 +44,9 @@ module API
       end
 
       desc "Update a horse." do
-        http_codes [{code: 422, message: 'Validation Errors', model: Entities::ApiError}]
+        http_codes [
+          {code: 422, message: 'Validation Errors', model: Entities::ApiError}
+        ]
       end
       params do
         requires :id, type: Integer, desc: 'Identity of Horse', documentation: { example: 1}

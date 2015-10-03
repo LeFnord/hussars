@@ -4,9 +4,6 @@ module API
     extend ActiveSupport::Concern
 
     included do
-      # common Grape settings
-      format :json
-
       # global handler for simple not found case
       rescue_from ActiveRecord::RecordNotFound do |e|
         error_response(message: e.message, status: 404)

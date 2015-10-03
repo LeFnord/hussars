@@ -22,7 +22,10 @@ module API
       end
 
       desc 'Create a hussar' do
-        http_codes [{code: 201, message: 'Hussar created'}, {code: 422, message: 'Validation Errors', model: Entities::ApiError}]
+        http_codes [
+          {code: 201, message: 'Hussar created'},
+          {code: 422, message: 'Validation Errors', model: Entities::ApiError}
+        ]
       end
       params do
         requires :name, type: String, desc: 'Name of Hussar to create'
@@ -37,7 +40,9 @@ module API
       end
 
       desc 'Update a hussar' do
-        http_codes [{code: 422, message: 'Validation Errors', model: Entities::ApiError}]
+        http_codes [
+          {code: 422, message: 'Validation Errors', model: Entities::ApiError}
+        ]
       end
       params do
         requires :id, type: Integer, desc: 'Identity of Hussar', documentation: { example: 1}

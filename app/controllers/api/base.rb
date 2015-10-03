@@ -1,5 +1,7 @@
 module API
   class Base < Grape::API
+    format :json
+
     mount API::Hussars
     mount API::Horses
 
