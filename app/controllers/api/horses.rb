@@ -13,7 +13,7 @@ module API
         horses = Horse.all
         present :total_page, 10
         present :per_page, 20
-        present :horses, horses, with: Entities::Horse
+        present :horses, horses, with: Entities::Base
       end
 
       desc 'Returns specific horse.', params: Entities::Horse.documentation

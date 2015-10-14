@@ -3,12 +3,14 @@ module API
     include API::Defaults
 
     resource :hussars do
-      desc 'Return list of hussars'
+      desc 'Return list of hussars' do
+        http_codes [ { code: 200, message: "Get something", model: Entities::Base } ]
+      end
       get do
         hussars = Hussar.all
         present :total_page, 10
         present :per_page, 20
-        present :hussars, hussars, with: Entities::Hussar
+        present :hussars, hussars, with: Entities::Base
       end
 
       desc 'Returns specific hussar', params: Entities::Hussar.documentation

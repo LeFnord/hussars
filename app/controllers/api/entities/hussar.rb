@@ -1,10 +1,13 @@
 module API
   module Entities
     class Hussar < Grape::Entity
-      expose :id, documentation: { type: Integer, desc: 'Identity of Hussar' }
-      expose :name, documentation: { type: String, desc: 'Name of Hussar' }
+      include API::Entities::Defaults
+
       expose :born, documentation: { type: String, desc: 'Birthday of Hussar' }
-      expose :horses, using: Entities::Horse, documentation: { type: Array, desc: 'Horses of Hussar', is_array: true }
+      expose :size, documentation: { type: Integer }
+      expose :age, documentation: { type: Integer }
+      expose :gender, documentation: { type: Integer }
+      expose :horses, using: Entities::Base, documentation: { type: Array, desc: 'Horses of Hussar', is_array: true }
     end
   end
 end

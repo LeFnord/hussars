@@ -1,18 +1,16 @@
-GIT
-  remote: git@github.com:LeFnord/grape-swagger-ui.git
-  revision: 0947415a4023bea5148da4aecb3d572c14bc41a4
-  specs:
-    grape-swagger-ui (0.0.9)
-      railties (>= 4.2)
-
-GIT
-  remote: git@github.com:LeFnord/grape-swagger.git
-  revision: 124d2aa96bd567f58adeca8a0d92e8d86fe76573
+PATH
+  remote: ../grape-swagger
   specs:
     grape-swagger (0.10.3)
       awesome_print
       grape
       grape-entity
+
+PATH
+  remote: ../grape-swagger-ui
+  specs:
+    grape-swagger-ui (0.0.9)
+      railties (>= 4.2)
 
 GEM
   remote: https://rubygems.org/
