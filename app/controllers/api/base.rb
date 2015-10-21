@@ -11,7 +11,7 @@ module API
     end
 
     add_swagger_documentation :format => :json,
-                              :hide_documentation_path => false,
+                              :hide_documentation_path => true,
                               :api_version => 'v1',
                               :info => {
                                 title: "Horses and Hussars",

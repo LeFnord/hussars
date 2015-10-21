@@ -16,7 +16,12 @@ module API
         present :horses, horses, with: Entities::Base
       end
 
-      desc 'Returns specific horse.', params: Entities::Horse.documentation
+      desc 'Returns specific horse.' do
+        http_codes [
+          { code: 422, message: 'HorsesOutError', model: Entities::ApiError }
+        ]
+
+      end
       params do
         requires :id, type: Integer, desc: 'Identifier of Horse.', documentation: { example: '1'}
       end
