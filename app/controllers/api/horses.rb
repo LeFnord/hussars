@@ -3,17 +3,17 @@ module API
     include API::Defaults
 
     resources :horses do
-      desc 'Get all horses' do
-        http_codes [
-          { code: 200, message: 'get Horses' },
+      desc 'Get all horses',
+        action: :index,
+        http_codes: [
+          { code: 200, message: 'get Horses', model: Entities::Horse },
           { code: 422, message: 'HorsesOutError', model: Entities::ApiError }
         ]
-      end
       get do
         horses = Horse.all
         present :total_page, 10
         present :per_page, 20
-        present :horses, horses, with: Entities::Base
+        present :horses, horses, with: Entities::Horse
       end
 
       desc 'Returns specific horse.' do

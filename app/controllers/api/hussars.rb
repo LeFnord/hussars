@@ -3,9 +3,9 @@ module API
     include API::Defaults
 
     resource :hussars do
-      desc 'Return list of hussars' do
-        http_codes [ { code: 200, message: "Get something", model: Entities::Base } ]
-      end
+      desc 'Return list of hussars',
+        action: :index,
+        http_codes: [ { code: 200, message: "Get something", model: Entities::Base } ]
       get do
         hussars = Hussar.all
         present :total_page, 10
