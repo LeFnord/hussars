@@ -4,7 +4,7 @@ module API
 
     resource :hussars do
       desc 'Return list of hussars',
-        action: :index,
+        is_array: true,
         http_codes: [ { code: 200, message: "Get something", model: Entities::Base } ]
       get do
         hussars = Hussar.all

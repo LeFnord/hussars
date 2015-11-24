@@ -4,7 +4,7 @@ module API
 
     resources :horses do
       desc 'Get all horses',
-        action: :index,
+        is_array: true,
         http_codes: [
           { code: 200, message: 'get Horses', model: Entities::Horse },
           { code: 422, message: 'HorsesOutError', model: Entities::ApiError }
