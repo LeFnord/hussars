@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :horses
 
   mount API::Base => '/api'
-  mount GrapeSwaggerRails::Engine => '/swagger'
+  mount GrapeSwaggerRails::Engine => '/api-ui'
 end

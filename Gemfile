@@ -1,20 +1,20 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', git: 'git@github.com:rails/rails.git', tag: 'v5.0.0.beta3'
 gem 'sqlite3'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jbuilder'
+gem 'sdoc', group: :doc
 
 gem 'grape'
-gem 'grape-swagger', git: 'git@github.com:LeFnord/grape-swagger.git'
-gem 'grape-swagger-rails', git: 'git@github.com:LeFnord/grape-swagger-rails.git'
+gem 'grape-swagger', git: 'git@github.com:ruby-grape/grape-swagger.git'
+gem 'grape-swagger-rails', git: 'git@github.com:ruby-grape/grape-swagger-rails.git'
 gem 'grape-entity'
 
 group :development, :test do
@@ -24,6 +24,5 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
   gem 'spring'
 end
