@@ -24,5 +24,6 @@ group :development, :test do
 end
 
 group :development do
+
   gem 'spring'
 end
